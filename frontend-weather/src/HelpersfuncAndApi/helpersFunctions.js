@@ -3,7 +3,7 @@ export const API_URL = `https://www.metaweather.com/api/location/44418/`;
 export const temperatureConverter = (temperature, isCelsius) => {
   let returnTemp = temperature;
   if (!isCelsius) {
-    returnTemp = (temperature - 32) * (5 / 9);
+    returnTemp = (temperature * 9) / 5 + 32;
   }
   return Math.round(returnTemp);
 };

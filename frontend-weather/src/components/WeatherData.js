@@ -13,11 +13,13 @@ const WeatherData = ({ active, isMetric }) => {
       <Temp>
         <h2 className="section-title">Temp</h2>
         <p className="reading">
-          High:<span> {temperatureConverter(active.maxTemp, isMetric)}</span> °
+          High:
+          <span> {temperatureConverter(active.maxTemp, isMetric, true)}</span> °
           <span>{isMetric ? "C" : "F"}</span>
         </p>
         <p className="reading">
-          Low:<span> {temperatureConverter(active.minTemp, isMetric)}</span> °
+          Low:
+          <span> {temperatureConverter(active.minTemp, isMetric, true)}</span> °
           <span>{isMetric ? "C" : "F"}</span>
         </p>
       </Temp>
