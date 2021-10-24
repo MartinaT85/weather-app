@@ -1,5 +1,14 @@
-const Units = () => {
-  return <h1>Hello from Units</h1>;
+import React from "react";
+import { UnitsStyles, ToggleTemp } from "../styles/app.styles";
+
+const Units = ({ units, setUnits }) => {
+  return (
+    <UnitsStyles>
+      <label htmlFor="cel">°C</label>
+      <ToggleTemp units={units} onClick={() => setUnits((prev) => !prev)} />
+      <label htmlFor="far">°F</label>
+    </UnitsStyles>
+  );
 };
 
 export default Units;

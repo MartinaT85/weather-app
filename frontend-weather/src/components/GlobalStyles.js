@@ -13,6 +13,17 @@ html {
   box-sizing: inherit;
 }
 
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 body {
   padding: 0;
   margin: 0;
