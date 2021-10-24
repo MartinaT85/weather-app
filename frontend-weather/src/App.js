@@ -9,7 +9,7 @@ import Previous from "./components/Previous.js";
 import GlobalStyle from "./components/GlobalStyles.js";
 const woeid = "44418";
 
-const baseURL = `https://www.metaweather.com/api/location/44418/`;
+const baseURL = `/location/44418/`;
 
 function App() {
   const [loading, setloading] = useState(true);
@@ -23,7 +23,6 @@ function App() {
     const json = await res.json();
     console.log(json);
   }
-  console.log(setActiveDay);
 
   useEffect(() => {
     requestWeather();
