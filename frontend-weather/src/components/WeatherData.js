@@ -1,5 +1,8 @@
 import React from "react";
-import { temperatureConverter } from "../HelpersfuncAndApi/helpersFunctions";
+import {
+  temperatureConverter,
+  milesToKm,
+} from "../HelpersfuncAndApi/helpersFunctions";
 import { Wrapper, Date, Temp, Wind } from "../styles/app.styles";
 
 const WeatherData = ({ active, isMetric }) => {
@@ -14,7 +17,7 @@ const WeatherData = ({ active, isMetric }) => {
         <h2 className="section-title">Temp</h2>
         <p className="reading">
           High:
-          <span> {temperatureConverter(active.maxTemp, isMetric, true)}</span> °
+          <span> {temperatureConverter(active.maxTemp, isMetric)}</span> °
           <span>{isMetric ? "C" : "F"}</span>
         </p>
         <p className="reading">
@@ -27,7 +30,7 @@ const WeatherData = ({ active, isMetric }) => {
       <Wind deg={active.windDirection}>
         <h2 className="section-title">Wind</h2>
         <p className="reading">
-          <span>{Math.round(active.windSpeed)} </span>
+          <span>{milesToKm(active.windSpeed, isMetric)} </span>
           <span>{isMetric ? "kph" : "mph"}</span>
         </p>
 

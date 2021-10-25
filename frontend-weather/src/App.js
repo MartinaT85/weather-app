@@ -1,7 +1,8 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
-import { formatDate } from "./HelpersfuncAndApi/helpersFunctions.js";
-import { API_URL } from "./HelpersfuncAndApi/helpersFunctions";
+// import { Switch, Route } from "react-router-dom";
+// import ChartPage from "./pages/ChartPage.js";
+// import HeatIndex from "./pages/HeatIndex.js";
+import Nav from "./components/Nav";
 import WeatherData from "./components/WeatherData.js";
 import Info from "./components/Info.js";
 import Units from "./components/Units";
@@ -30,23 +31,28 @@ function App() {
   const [togglePrev, setTogglePrev] = useState(false);
 
   async function requestWeather() {
-    const res = await fetch(baseURL);
-    const json = await res.json();
-    console.log(json);
-    const londonWeather = json.map((el) => {
-      return {
-        dateTime: el?.applicable_date || "No data",
-        weatherState: el?.weather_state_name || "No data",
-        maxTemp: el?.max_temp || "No data",
-        minTemp: el?.min_temp || "No data",
-        airPressure: el?.air_presure || "No data",
-        humidity: el?.humidity || "No data",
-        windDirection: el?.wind_direction || "No data",
-        windSpeed: el?.wind_speed || "No data",
-      };
-    });
-    setActiveDay(londonWeather[0]);
-    setloading(false);
+    try {
+      const res = await fetch(baseURL);
+      const json = await res.json();
+      console.log(json);
+      const londonWeather = json.map((el) => {
+        return {
+          dateTime: el?.applicable_date || "No data",
+          weatherState: el?.weather_state_name || "No data",
+          maxTemp: el?.max_temp || "No data",
+          minTemp: el?.min_temp || "No data",
+          airPressure: el?.air_pressure || "No data",
+          humidity: el?.humidity || "No data",
+          windDirection: el?.wind_direction || "No data",
+          windSpeed: el?.wind_speed || "No data",
+        };
+      });
+      console.log(londonWeather);
+      setActiveDay(londonWeather[0]);
+      setloading(false);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
@@ -54,26 +60,30 @@ function App() {
   }, []);
 
   return (
-    <main className="App">
-      <GlobalStyle />
-      <AppWrapper>
-        <LondonWeather>
-          {loading ? (
-            <div>Loading ...</div>
-          ) : (
-            <>
-              <h1 className="main-title">Weather in London on the date:</h1>
-              <WeatherData active={activeDay} isMetric={units} />
-              <InfoWrapper>
-                <Info />
-                <Units units={units} setUnits={setUnits} />
-              </InfoWrapper>
-            </>
-          )}
-        </LondonWeather>
-        <Previous />
-      </AppWrapper>
-    </main>
+    <>
+      <Nav />
+      <main className="App">
+        <GlobalStyle />
+
+        <AppWrapper>
+          <LondonWeather>
+            {loading ? (
+              <div>Loading ...</div>
+            ) : (
+              <>
+                <h1 className="main-title">Weather in London on the date:</h1>
+                <WeatherData active={activeDay} isMetric={units} />
+                <InfoWrapper>
+                  <Info />
+                  <Units units={units} setUnits={setUnits} />
+                </InfoWrapper>
+              </>
+            )}
+          </LondonWeather>
+          <Previous />
+        </AppWrapper>
+      </main>
+    </>
   );
 }
 

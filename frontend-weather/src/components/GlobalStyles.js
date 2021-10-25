@@ -50,7 +50,7 @@ a {
   text-decoration: none;
 }
 
-main {
+section {
   width: 90vw;
   margin: 0 auto
 }

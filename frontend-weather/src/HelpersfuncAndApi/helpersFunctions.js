@@ -1,5 +1,3 @@
-export const API_URL = `https://www.metaweather.com/api/location/44418/`;
-
 export const temperatureConverter = (temperature, isCelsius) => {
   let returnTemp = temperature;
   if (!isCelsius) {
@@ -8,6 +6,10 @@ export const temperatureConverter = (temperature, isCelsius) => {
   return Math.round(returnTemp);
 };
 
-export const formatDate = (date) => {
-  date.toLocaleDateString(undefined, { day: "numeric", month: "long" });
+export const milesToKm = (dist, isKm) => {
+  let returnDist = dist;
+  if (isKm) {
+    returnDist = dist * 1.609;
+  }
+  return Math.round(returnDist);
 };
